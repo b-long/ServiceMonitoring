@@ -19,7 +19,7 @@ then
     echo "${REASON}"
     RETVAL=0 # "OK"
 else
-    REASON="ElasticSearch is not running"
+    REASON="ElasticSearch is not running, it will be automatically restarted."
     echo "${REASON}"
     RETVAL=1 # "ALARM"
 fi
@@ -27,5 +27,10 @@ fi
 /usr/local/bin/aws cloudwatch put-metric-data --metric-name ElasticSearchStatus --namespace "support.bioconductor.org" --value "${RETVAL}"
 
 echo "Status: ${RETVAL} sent to CloudWatch at $(date -u)."
+
+if [ $RETVAL -eq 1 ]; then 
+    service elasticsearch start
+fi
+
 exit 0
 
