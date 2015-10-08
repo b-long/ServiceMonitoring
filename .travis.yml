@@ -2,5 +2,6 @@ language: haskell
 before_install:
   - "cabal update"
   - "cabal install shellcheck"
+install: true
 script:
   - "shellcheck *.sh"
