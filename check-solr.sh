@@ -13,8 +13,8 @@ RETVAL=1
 
 echo "Checking if Solr is running" 
 
-if pgrep -f solr > /dev/null
-then
+solr_status=$(curl -s -o /dev/null -I -w "%{http_code}" http://localhost:8983/solr/)
+if [ "${solr_status}" -eq 200 ]; then
     REASON="Solr (the engine powering search on bioconductor.org) is running"
     echo "${REASON}"
     RETVAL=0 # "OK"
