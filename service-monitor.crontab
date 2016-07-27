@@ -1,0 +1,7 @@
+# At minutes :05, :35, every hour
+# Clean the log file
+5,35 * * * * echo "$(tail -n 2 /home/servicemonitor/service-monitor.log)" > /home/servicemonitor/service-monitor.log
+
+# At minutes :00, :30, every hour
+# Monitor the service
+0,30 * * * * /home/servicemonitor/service-monitor.sh >> /home/servicemonitor/service-monitor.log 2>&1

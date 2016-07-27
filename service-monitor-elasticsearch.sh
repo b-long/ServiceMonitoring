@@ -1,17 +1,17 @@
 #!/usr/bin/env bash
 
-# More information is available : https://gist.github.com/b-long/632c310453b44fc8e785 
+# More information is available : https://gist.github.com/b-long/632c310453b44fc8e785
 
 # If you ever need to confirm that AWS is configured properly, invoke 'aws help' at the
-# command line.  This will also verify authentication. 
+# command line.  This will also verify authentication.
 
 # At installation time, make sure to set the initial alarm state:
-# aws cloudwatch set-alarm-state --alarm-name support_search-down --state-value OK --state-reason "Installing job"
+# aws cloudwatch set-alarm-state --alarm-name service_alarm --state-value OK --state-reason "Installing ServiceMonitor"
 
 #set -x
 RETVAL=1
 
-echo "Checking if ElasticSearch is running" 
+echo "Checking if ElasticSearch is running"
 
 if service elasticsearch status > /dev/null
 then
@@ -28,9 +28,8 @@ fi
 
 echo "Status: ${RETVAL} sent to CloudWatch at $(date -u)."
 
-if [ $RETVAL -eq 1 ]; then 
+if [ $RETVAL -eq 1 ]; then
     service elasticsearch start
 fi
 
 exit 0
-
