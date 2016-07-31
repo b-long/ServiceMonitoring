@@ -137,6 +137,7 @@ Next, make sure to cleanup that fake job we created (use the Linux command `jobs
 
 ### Roadmap
 
+* Configurable alarm templates ([see issue #4](https://github.com/b-long/ServiceMonitoring/issues/4#issuecomment-235489329)).
 * Additional configuration options
 * Additional service integrations
 
